@@ -83,6 +83,42 @@
 #checkout:hover {
   background: #0a58ca;
 }
+  /* --- Floating Cart Button --- */
+#floating-cart {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #2874f0;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+#floating-cart:hover {
+  background-color: #0a58ca;
+  transform: scale(1.1);
+}
+
+#floating-cart #floating-count {
+  background-color: #ff5252;
+  color: white;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 </style>
 </head>
 <body>
@@ -257,5 +293,9 @@ backToTop.addEventListener("click", () => {
   window.scrollTo({top: 0, behavior: "smooth"});
 });
 </script>
+  <!-- Floating Cart Button -->
+<div id="floating-cart">
+  🛒 <span id="floating-count">0</span>
+</div>
 </body>
 </html>
