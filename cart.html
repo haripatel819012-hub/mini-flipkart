@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Flipkart Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">MiniFlipkart</div>
+    <a href="cart.html" class="cart">🛒 <span id="cart-count">0</span></a>
+  </header>
+
+  <main id="cart-items">
+    <h2>Your Cart</h2>
+    <div class="cart-list"></div>
+    <div class="cart-total">
+      <p>Total: ₹<span id="total-amount">0</span></p>
+      <button id="checkout">Checkout</button>
+    </div>
+  </main>
+
+  <button id="back-to-top">⬆</button>
+
+  <footer>
+    &copy; 2025 Mini Flipkart
+  </footer>
+
+  <script src="cart.js"></script>
+</body>
+</html>
