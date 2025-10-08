@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Flipkart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">MiniFlipkart</div>
+    <input type="text" placeholder="Search for products">
+    <a href="cart.html" class="cart">🛒 <span id="cart-count">0</span></a>
+  </header>
+
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <p>🔥 Big Sale! Up to 50% off on Electronics & Fashion! 🔥</p>
+  </div>
+
+  <!-- Featured Products Slider -->
+  <div class="featured-section">
+    <h2>Featured Products</h2>
+    <div class="featured-slider" id="featured-slider"></div>
+  </div>
+
+  <!-- Category Sections -->
+  <section class="category-section electronics">
+    <div class="category-banner">🔥 Top Deals in Electronics 🔥</div>
+    <h2>Electronics</h2>
+    <div class="deal-slider" id="electronics-deals"></div>
+    <div class="category-products" id="electronics-list"></div>
+  </section>
+
+  <section class="category-section fashion">
+    <div class="category-banner">💃 Hot Fashion Deals 💃</div>
+    <h2>Fashion</h2>
+    <div class="deal-slider" id="fashion-deals"></div>
+    <div class="category-products" id="fashion-list"></div>
+  </section>
+
+  <section class="category-section home">
+    <div class="category-banner">🏠 Home & Living Offers 🏠</div>
+    <h2>Home & Living</h2>
+    <div class="deal-slider" id="home-deals"></div>
+    <div class="category-products" id="home-list"></div>
+  </section>
+
+  <!-- Back to Top -->
+  <button id="back-to-top">⬆</button>
+
+  <footer>
+    &copy; 2025 Mini Flipkart
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
