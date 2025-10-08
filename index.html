@@ -1,59 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mini Flipkart</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Flipkart</title>
+<style>
+/* --- CSS START --- */
+body { margin:0; font-family: Arial,sans-serif; background:#f1f3f6; scroll-behavior:smooth; }
+a{ text-decoration:none;color:inherit; }
+/* Header */
+header{display:flex;justify-content:space-between;align-items:center;background:#2874f0;color:white;padding:10px 20px;position:sticky;top:0;z-index:1000;}
+header .logo{font-size:1.5em;font-weight:bold;}
+header input{width:50%;padding:7px;border-radius:3px;border:none;}
+header .cart{font-size:1.2em;color:white;}
+/* Top Banner */
+.top-banner{background:#ffe500;color:#111;text-align:center;padding:10px;font-weight:bold;}
+/* Featured */
+.featured-section{margin:20px;text-align:center;}
+.featured-section h2{margin-bottom:10px;}
+.featured-slider{display:flex;overflow-x:auto;gap:15px;padding-bottom:10px;}
+.featured-slider::-webkit-scrollbar{display:none;}
+.featured-card{min-width:180px;background:white;border-radius:10px;padding:10px;text-align:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition: transform 0.3s, box-shadow 0.3s;}
+.featured-card:hover{transform:translateY(-7px);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+.featured-card img{width:100%;border-radius:10px;}
+.featured-card h3{margin:8px 0 5px;}
+.featured-card p{font-weight:bold;}
+/* Category Sections */
+.category-section{padding:20px;}
+.category-section h2{margin-bottom:15px;}
+.category-section.electronics{background:#e1f5fe;}
+.category-section.fashion{background:#fce4ec;}
+.category-section.home{background:#fff3e0;}
+.category-products,.deal-slider{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;}
+.category-banner{background:#ffe500;padding:8px 12px;border-radius:8px;margin-bottom:10px;font-weight:bold;color:#111;text-align:center;}
+.deal-slider{overflow-x:auto;}
+.deal-slider::-webkit-scrollbar{display:none;}
+.deal-card{min-width:160px;background:white;border-radius:10px;padding:8px;flex-shrink:0;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.3s,box-shadow 0.3s;}
+.deal-card:hover{transform:translateY(-5px);box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+.deal-card img{width:100%;border-radius:10px;}
+.deal-card h4{margin:5px 0 3px;font-size:0.9em;}
+.deal-card p{font-size:0.85em;font-weight:bold;}
+/* Product Cards */
+.product-card,.cart-item,.product-detail-card{background:white;border-radius:10px;text-align:center;padding:10px;margin:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.3s,box-shadow 0.3s;}
+.product-card:hover,.cart-item:hover,.product-detail-card:hover{transform:translateY(-7px);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+.product-card img,.product-detail-card img,.cart-item img{width:100%;border-radius:10px;}
+.product-card h3,.cart-item h3,.product-detail-card h2{margin:10px 0 5px;}
+.product-card p,.cart-item p,.product-detail-card p{font-weight:bold;color:#333;margin:5px 0;}
+/* Buttons */
+.product-card button,.product-detail-card button,#checkout,.view-details{background:#fb641b;color:white;padding:8px 15px;border:none;border-radius:25px;cursor:pointer;margin:5px 0;font-weight:bold;}
+.product-card button:hover,.product-detail-card button:hover,#checkout:hover,.view-details:hover{background:#e55d1c;}
+.view-details{display:inline-block;background:#2874f0;color:white;text-decoration:none;font-size:0.9em;}
+.view-details:hover{background:#1a5fc1;}
+.product-image{position:relative;}
+.offer-badge{position:absolute;top:8px;left:8px;background:#fb641b;color:white;font-size:0.75em;padding:3px 6px;border-radius:5px;font-weight:bold;z-index:10;}
+.cart-list{display:flex;flex-direction:column;gap:10px;margin:20px;}
+.cart-item{display:flex;gap:15px;padding:10px;}
+.cart-info{text-align:left;flex-grow:1;}
+.remove-btn{background:#e53935;color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;}
+.remove-btn:hover{background:#c62828;}
+.cart-total{text-align:right;margin:20px;}
+#back-to-top{position:fixed;bottom:25px;right:25px;background:#2874f0;color:white;border:none;padding:12px 15px;border-radius:50%;cursor:pointer;font-size:1.2em;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:none;z-index:1000;}
+#back-to-top:hover{background:#1a5fc1;}
+footer{text-align:center;background:#2874f0;color:white;padding:12px;margin-top:20px;}
+@media(max-width:768px){header input{width:40%;}.product-list,.cart-list,.featured-slider,.deal-slider,.category-products{flex-direction:column;align-items:center;}.product-card,.cart-item,.product-detail-card,.featured-card,.deal-card{width:90%;}}
+</style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">MiniFlipkart</div>
-    <input type="text" placeholder="Search for products">
-    <a href="cart.html" class="cart">🛒 <span id="cart-count">0</span></a>
-  </header>
 
-  <!-- Top Banner -->
-  <div class="top-banner">
-    <p>🔥 Big Sale! Up to 50% off on Electronics & Fashion! 🔥</p>
+<header>
+  <div class="logo">MiniFlipkart</div>
+  <input type="text" placeholder="Search for products">
+  <a href="#cart-section" class="cart">🛒 <span id="cart-count">0</span></a>
+</header>
+
+<div class="top-banner">🔥 Big Sale! Up to 50% off on Electronics & Fashion! 🔥</div>
+
+<div class="featured-section">
+  <h2>Featured Products</h2>
+  <div class="featured-slider" id="featured-slider"></div>
+</div>
+
+<section class="category-section electronics">
+  <div class="category-banner">🔥 Top Deals in Electronics 🔥</div>
+  <h2>Electronics</h2>
+  <div class="deal-slider" id="electronics-deals"></div>
+  <div class="category-products" id="electronics-list"></div>
+</section>
+
+<section class="category-section fashion">
+  <div class="category-banner">💃 Hot Fashion Deals 💃</div>
+  <h2>Fashion</h2>
+  <div class="deal-slider" id="fashion-deals"></div>
+  <div class="category-products" id="fashion-list"></div>
+</section>
+
+<section class="category-section home">
+  <div class="category-banner">🏠 Home & Living Offers 🏠</div>
+  <h2>Home & Living</h2>
+  <div class="deal-slider" id="home-deals"></div>
+  <div class="category-products" id="home-list"></div>
+</section>
+
+<div id="cart-section">
+  <h2>Your Cart</h2>
+  <div class="cart-list"></div>
+  <div class="cart-total">
+    <p>Total: ₹<span id="total-amount">0</span></p>
+    <button id="checkout">Checkout</button>
   </div>
+</div>
 
-  <!-- Featured Products Slider -->
-  <div class="featured-section">
-    <h2>Featured Products</h2>
-    <div class="featured-slider" id="featured-slider"></div>
-  </div>
+<button id="back-to-top">⬆</button>
 
-  <!-- Category Sections -->
-  <section class="category-section electronics">
-    <div class="category-banner">🔥 Top Deals in Electronics 🔥</div>
-    <h2>Electronics</h2>
-    <div class="deal-slider" id="electronics-deals"></div>
-    <div class="category-products" id="electronics-list"></div>
-  </section>
+<footer>&copy; 2025 Mini Flipkart</footer>
 
-  <section class="category-section fashion">
-    <div class="category-banner">💃 Hot Fashion Deals 💃</div>
-    <h2>Fashion</h2>
-    <div class="deal-slider" id="fashion-deals"></div>
-    <div class="category-products" id="fashion-list"></div>
-  </section>
+<script>
+/* --- JS START --- */
+const products=[
+{name:"Smartphone",price:12999,category:"electronics",img:"https://dummyimage.com/200x200/2874f0/ffffff&text=Smartphone",offer:"50% OFF"},
+{name:"Headphones",price:1499,category:"electronics",img:"https://dummyimage.com/200x200/2874f0/ffffff&text=Headphones",offer:"Best Seller"},
+{name:"Smartwatch",price:5999,category:"electronics",img:"https://dummyimage.com/200x200/2874f0/ffffff&text=Smartwatch"},
+{name:"Laptop",price:45999,category:"electronics",img:"https://dummyimage.com/200x200/2874f0/ffffff&text=Laptop"},
+{name:"T-Shirt",price:499,category:"fashion",img:"https://dummyimage.com/200x200/fce4ec/000000&text=T-Shirt",offer:"20% OFF"},
+{name:"Shoes",price:1999,category:"fashion",img:"https://dummyimage.com/200x200/fce4ec/000000&text=Shoes"},
+{name:"Sofa",price:15999,category:"home",img:"https://dummyimage.com/200x200/fff3e0/000000&text=Sofa"},
+{name:"Lamp",price:999,category:"home",img:"https://dummyimage.com/200x200/fff3e0/000000&text=Lamp"}
+];
 
-  <section class="category-section home">
-    <div class="category-banner">🏠 Home & Living Offers 🏠</div>
-    <h2>Home & Living</h2>
-    <div class="deal-slider" id="home-deals"></div>
-    <div class="category-products" id="home-list"></div>
-  </section>
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+const cartCount=document.getElementById("cart-count");
+cartCount.textContent=cart.length;
+const backToTop=document.getElementById("back-to-top");
+window.addEventListener("scroll",()=>{backToTop.style.display=window.scrollY>200?"block":"none";});
+backToTop.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"});});
 
-  <!-- Back to Top -->
-  <button id="back-to-top">⬆</button>
+// Featured Slider
+const featuredSlider=document.getElementById("featured-slider");
+products.slice(0,4).forEach(product=>{
+let card=document.createElement("div");card.className="featured-card";
+card.innerHTML=`<div class="product-image"><img src="${product.img}" alt="${product.name}">${product.offer?`<span class="offer-badge">${product.offer}</span>`:""}</div><h3>${product.name}</h3><p>₹${product.price}</p><button>Add to Cart</button>`;
+card.querySelector("button").addEventListener("click",()=>{
+cart.push(product);localStorage.setItem("cart",JSON.stringify(cart));cartCount.textContent=cart.length;alert(`${product.name} added to cart!`);
+});
+featuredSlider.appendChild(card);
+});
 
-  <footer>
-    &copy; 2025 Mini Flipkart
-  </footer>
+// Categories
+function populateCategory(sectionId,categoryName){
+const container=document.getElementById(sectionId);
+products.filter(p=>p.category===categoryName).forEach(product=>{
+let card=document.createElement("div");card.className="product-card";
+card.innerHTML=`<div class="product-image"><img src="${product.img}" alt="${product.name}">${product.offer?`<span class="offer-badge">${product.offer}</span>`:""}</div><h3>${product.name}</h3><p>₹${product.price}</p><button>Add to Cart</button>`;
+card.querySelector("button").addEventListener("click",()=>{cart.push(product);localStorage.setItem("cart",JSON.stringify(cart));cartCount.textContent=cart.length;alert(`${product.name} added to cart!`);});
+container.appendChild(card);
+});
+}
+populateCategory("electronics-list","electronics");
+populateCategory("fashion-list","fashion");
+populateCategory("home-list","home");
 
-  <script src="script.js"></script>
+// Deals
+function populateDeals(containerId,category){
+const container=document.getElementById(containerId);
+products.filter(p=>p.category===category).slice(0,5).forEach(product=>{
+let card=document.createElement("div");card.className="deal-card";
+card.innerHTML=`<img src="${product.img}" alt="${product.name}"><h4>${product.name}</h4><p>₹${product.price}</p>`;
+container.appendChild(card);
+});
+}
+populateDeals("electronics-deals","electronics");
+populateDeals("fashion-deals","fashion");
+populateDeals("home-deals","home");
+
+// Cart Section
+const cartList=document.querySelector(".cart-list");
+const totalAmount=document.getElementById("total-amount");
+function renderCart(){
+cartList.innerHTML="";let total=0;
+if(cart.length===0){cartList.innerHTML="<p>Your cart is empty!</p>";totalAmount.textContent="0";return;}
+cart.forEach((product,index)=>{total+=product.price;
+let item=document.createElement("div");item.className="cart-item";
+item.innerHTML=`<img src="${product.img}" alt="${product.name}" width="100"><div class="cart-info"><h3>${product.name}</h3><p>₹${product.price}</p></div><button class="remove-btn" data-index="${index}">Remove</button>`;
+cartList.appendChild(item);
+});
+totalAmount.textContent=total;
+document.querySelectorAll(".remove-btn").forEach(btn=>{btn.addEventListener("click",()=>{
+const idx=btn.getAttribute("data-index");cart.splice(idx,1);localStorage.setItem("cart",JSON.stringify(cart));cartCount.textContent=cart.length;renderCart();
+});});
+}
+renderCart();
+document.getElementById("checkout").addEventListener("click",()=>{
+if(cart.length===0){alert("Your cart is empty!");return;}
+alert(`Order placed successfully! Total: ₹${totalAmount.textContent}`);cart=[];localStorage.setItem("cart",JSON.stringify(cart));cartCount.textContent=0;renderCart();
+});
+</script>
+
 </body>
 </html>
