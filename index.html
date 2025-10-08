@@ -9,17 +9,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body { background-color: #f1f3f6; }
 
-    body {
-      background-color: #f1f3f6;
-    }
-
+    /* Header */
     header {
       background-color: #2874f0;
       color: white;
@@ -27,227 +20,68 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-
-    header h1 {
-      font-size: 22px;
-    }
-
-    header .cart {
-      position: relative;
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    header .cart span {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background: #ff5252;
-      color: white;
-      font-size: 13px;
-      padding: 2px 6px;
-      border-radius: 10px;
-    }
+    header h1 { font-size: 22px; }
+    header .cart { position: relative; cursor: pointer; font-size: 20px; }
+    header .cart span { position: absolute; top:-10px; right:-10px; background:#ff5252; color:white; font-size:13px; padding:2px 6px; border-radius:10px; }
 
     /* Sidebar */
     #sidebar {
-      position: fixed;
-      top: 70px;
-      left: 0;
-      width: 230px;
-      height: 100%;
-      background-color: #ffffff;
-      border-right: 1px solid #ddd;
-      padding: 20px;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.05);
-      z-index: 999;
-      overflow-y: auto;
+      position: fixed; top: 70px; left: 0;
+      width: 230px; height: 100%;
+      background-color: #fff; border-right:1px solid #ddd;
+      padding:20px; box-shadow:2px 0 8px rgba(0,0,0,0.05); z-index:999; overflow-y:auto;
     }
+    #sidebar h2 { font-size:20px; color:#2874f0; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+    #sidebar ul { list-style:none; padding:0; }
+    #sidebar ul li { display:flex; align-items:center; gap:10px; font-size:16px; color:#333; padding:10px 8px; margin:4px 0; border-radius:6px; cursor:pointer; transition:0.2s; }
+    #sidebar ul li i { font-size:18px; color:#2874f0; width:25px; text-align:center; }
+    #sidebar ul li:hover { background:#f1f1f1; color:#2874f0; }
+    #sidebar ul li:hover i { color:#0a58ca; }
 
-    #sidebar h2 {
-      font-size: 20px;
-      color: #2874f0;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    #sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    #sidebar ul li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 16px;
-      color: #333;
-      padding: 10px 8px;
-      margin: 4px 0;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-
-    #sidebar ul li i {
-      font-size: 18px;
-      color: #2874f0;
-      width: 25px;
-      text-align: center;
-    }
-
-    #sidebar ul li:hover {
-      background-color: #f1f1f1;
-      color: #2874f0;
-    }
-
-    #sidebar ul li:hover i {
-      color: #0a58ca;
-    }
-
-    /* Product Section */
-    #products {
-      margin-top: 100px;
-      margin-left: 260px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .product {
-      background-color: white;
-      width: 250px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.2s ease;
-    }
-
-    .product:hover {
-      transform: scale(1.03);
-    }
-
-    .product img {
-      width: 100%;
-      height: 200px;
-      object-fit: contain;
-      margin-bottom: 10px;
-    }
-
-    .product button {
-      background-color: #2874f0;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .product button:hover {
-      background-color: #0a58ca;
-    }
+    /* Products */
+    #products { margin-top:100px; margin-left:260px; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:20px; }
+    .product { background:#fff; width:250px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); padding:15px; text-align:center; transition:0.2s; }
+    .product:hover { transform:scale(1.03); }
+    .product img { width:100%; height:200px; object-fit:contain; margin-bottom:10px; }
+    .product button { background:#2874f0; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer; transition:0.3s; }
+    .product button:hover { background:#0a58ca; }
 
     /* Cart Section */
-    #cart-section {
-      margin-left: 260px;
-      padding: 20px;
-    }
+    #cart-section { margin-left:260px; padding:20px; }
+    .cart-item { display:flex; align-items:center; background:#fff; padding:15px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); margin-bottom:15px; gap:15px; }
+    .cart-item img { width:100px; height:100px; object-fit:contain; }
+    .cart-item h3 { margin-bottom:5px; }
+    .remove-btn { margin-left:auto; background:#ff5252; color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer; }
+    #checkout { background:#2874f0; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; margin-top:10px; }
 
-    .cart-item {
-      display: flex;
-      align-items: center;
-      background-color: white;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      margin-bottom: 15px;
-      gap: 15px;
-    }
+    /* Floating Cart */
+    #floating-cart { position:fixed; bottom:25px; right:25px; background:#2874f0; color:white; font-size:22px; font-weight:bold; border-radius:50%; width:60px; height:60px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,0,0,0.3); cursor:pointer; z-index:9999; transition:0.2s; }
+    #floating-cart:hover { background:#0a58ca; transform:scale(1.1); }
+    #floating-cart #floating-count { background:#ff5252; color:white; font-size:14px; padding:2px 6px; border-radius:10px; position:absolute; top:10px; right:10px; }
 
-    .cart-item img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-    }
+    /* Payment Modal */
+    #payment-modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:99999; }
+    #payment-content { background:#fff; padding:30px; border-radius:10px; text-align:center; width:300px; }
+    #payment-content h3 { margin-bottom:20px; color:#2874f0; }
+    #payment-content button { display:block; width:100%; margin:8px 0; padding:10px; border:none; border-radius:6px; cursor:pointer; font-size:16px; transition:0.3s; background:#2874f0; color:white; }
+    #payment-content button:hover { background:#0a58ca; }
+    #payment-content input { border:1px solid #ccc; border-radius:6px; padding:8px; margin:5px 0; width:100%; }
 
-    .cart-item h3 {
-      margin-bottom: 5px;
-    }
-
-    .remove-btn {
-      margin-left: auto;
-      background-color: #ff5252;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    #checkout {
-      background-color: #2874f0;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    /* Floating Cart Button */
-    #floating-cart {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: #2874f0;
-      color: white;
-      font-size: 22px;
-      font-weight: bold;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      cursor: pointer;
-      z-index: 9999;
-      transition: transform 0.2s ease, background-color 0.3s ease;
-    }
-
-    #floating-cart:hover {
-      background-color: #0a58ca;
-      transform: scale(1.1);
-    }
-
-    #floating-cart #floating-count {
-      background-color: #ff5252;
-      color: white;
-      font-size: 14px;
-      padding: 2px 6px;
-      border-radius: 10px;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-
+    /* Form-specific width adjustments */
+    #card-form input[type=text]:nth-child(2),
+    #card-form input[type=text]:nth-child(3) { width:48%; display:inline-block; margin:5px 1%; }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header>
     <h1>Mini Flipkart</h1>
     <div class="cart">
@@ -277,21 +111,18 @@
       <p>₹12,999</p>
       <button onclick="addToCart('Samsung Galaxy M14', 12999, this.previousElementSibling.previousElementSibling.src)">Add to Cart</button>
     </div>
-
     <div class="product" data-category="Fashion">
       <img src="https://m.media-amazon.com/images/I/71c7tMLvheL._SL1500_.jpg" alt="T-Shirt">
       <h3>Men’s Cotton T-Shirt</h3>
       <p>₹499</p>
       <button onclick="addToCart('Men’s Cotton T-Shirt', 499, this.previousElementSibling.previousElementSibling.src)">Add to Cart</button>
     </div>
-
     <div class="product" data-category="Electronics">
       <img src="https://m.media-amazon.com/images/I/81Zt42ioCgL._SL1500_.jpg" alt="Headphones">
       <h3>Boat Rockerz 450</h3>
       <p>₹1,299</p>
       <button onclick="addToCart('Boat Rockerz 450', 1299, this.previousElementSibling.previousElementSibling.src)">Add to Cart</button>
     </div>
-
     <div class="product" data-category="Home">
       <img src="https://m.media-amazon.com/images/I/71cK7YXeC-L._SL1500_.jpg" alt="Chair">
       <h3>Wooden Chair</h3>
@@ -313,38 +144,69 @@
     🛒 <span id="floating-count">0</span>
   </div>
 
+  <!-- Payment Modal -->
+  <div id="payment-modal" style="display:none;">
+    <div id="payment-content">
+      <h3>Select Payment Method</h3>
+      <button onclick="showPaymentForm('card')">💳 Credit/Debit Card</button>
+      <button onclick="showPaymentForm('upi')">📲 UPI</button>
+      <button onclick="showPaymentForm('cod')">💵 Cash on Delivery</button>
+      <button onclick="closePaymentModal()">Cancel</button>
+
+      <!-- Card Payment Form -->
+      <div id="card-form" style="display:none; margin-top:15px;">
+        <input type="text" id="card-number" placeholder="Card Number" maxlength="16">
+        <input type="text" id="card-expiry" placeholder="MM/YY">
+        <input type="text" id="card-cvv" placeholder="CVV" maxlength="3">
+        <button onclick="pay('Credit/Debit Card')">Pay ₹<span id="pay-total-card"></span></button>
+      </div>
+
+      <!-- UPI Payment Form -->
+      <div id="upi-form" style="display:none; margin-top:15px;">
+        <input type="text" id="upi-id" placeholder="Enter UPI ID">
+        <button onclick="pay('UPI')">Pay ₹<span id="pay-total-upi"></span></button>
+      </div>
+
+      <!-- COD Form -->
+      <div id="cod-form" style="display:none; margin-top:15px;">
+        <p>Confirm Cash on Delivery for ₹<span id="pay-total-cod"></span>?</p>
+        <button onclick="pay('Cash on Delivery')">Confirm COD</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // Cart Setup
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartCount = document.getElementById("cart-count");
     const floatingCount = document.getElementById("floating-count");
     const cartList = document.getElementById("cart-list");
     const totalAmount = document.getElementById("total-amount");
 
-    // Update counts
     cartCount.textContent = cart.length;
     floatingCount.textContent = cart.length;
 
-    function saveCart() {
+    function saveCart(){
       localStorage.setItem("cart", JSON.stringify(cart));
       cartCount.textContent = cart.length;
       floatingCount.textContent = cart.length;
       renderCart();
     }
 
-    function addToCart(name, price, img) {
-      cart.push({ name, price, img });
+    function addToCart(name, price, img){
+      cart.push({name, price, img});
       saveCart();
     }
 
-    function renderCart() {
+    function renderCart(){
       cartList.innerHTML = "";
       let total = 0;
-      if (cart.length === 0) {
+      if(cart.length === 0){
         cartList.innerHTML = "<p>Your cart is empty!</p>";
         totalAmount.textContent = "0";
         return;
       }
-      cart.forEach((product, index) => {
+      cart.forEach((product, index)=>{
         total += product.price;
         const item = document.createElement("div");
         item.className = "cart-item";
@@ -360,41 +222,68 @@
       });
       totalAmount.textContent = total;
 
-      document.querySelectorAll(".remove-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
+      document.querySelectorAll(".remove-btn").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
           const idx = btn.getAttribute("data-index");
-          cart.splice(idx, 1);
+          cart.splice(idx,1);
           saveCart();
         });
       });
     }
 
-    function filterCategory(category) {
+    // Filter products
+    function filterCategory(category){
       const allProducts = document.querySelectorAll(".product");
-      allProducts.forEach(product => {
+      allProducts.forEach(product=>{
         const productCategory = product.getAttribute("data-category");
-        if (category === "All" || productCategory === category) {
-          product.style.display = "block";
-        } else {
-          product.style.display = "none";
-        }
+        product.style.display = (category==="All" || productCategory===category) ? "block" : "none";
       });
     }
 
-    document.getElementById("checkout").addEventListener("click", () => {
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
-      alert(`Order placed successfully! Total: ₹${totalAmount.textContent}`);
-      cart = [];
-      saveCart();
+    // Floating cart click scroll
+    document.getElementById("floating-cart").addEventListener("click", ()=>{
+      document.querySelector("#cart-section").scrollIntoView({behavior:"smooth"});
     });
 
-    // Floating cart click scroll
-    document.getElementById("floating-cart").addEventListener("click", () => {
-      document.querySelector("#cart-section").scrollIntoView({ behavior: "smooth" });
+    // Payment modal
+    function closePaymentModal(){ document.getElementById("payment-modal").style.display = "none"; }
+    function showPaymentForm(method){
+      document.getElementById("card-form").style.display="none";
+      document.getElementById("upi-form").style.display="none";
+      document.getElementById("cod-form").style.display="none";
+
+      document.getElementById("pay-total-card").textContent = totalAmount.textContent;
+      document.getElementById("pay-total-upi").textContent = totalAmount.textContent;
+      document.getElementById("pay-total-cod").textContent = totalAmount.textContent;
+
+      if(method==="card") document.getElementById("card-form").style.display="block";
+      if(method==="upi") document.getElementById("upi-form").style.display="block";
+      if(method==="cod") document.getElementById("cod-form").style.display="block";
+    }
+
+    document.getElementById("checkout").addEventListener("click", ()=>{
+      if(cart.length===0){ alert("Your cart is empty!"); return; }
+      document.getElementById("payment-modal").style.display="flex";
     });
+
+    function pay(method){
+      if(method==="Credit/Debit Card"){
+        const cardNumber=document.getElementById("card-number").value.trim();
+        const expiry=document.getElementById("card-expiry").value.trim();
+        const cvv=document.getElementById("card-cvv").value.trim();
+        if(cardNumber.length!==16 || expiry.length===0 || cvv.length!==3){
+          alert("Please enter valid card details!"); return;
+        }
+      }
+      if(method==="UPI"){
+        const upi=document.getElementById("upi-id").value.trim();
+        if(upi===""){ alert("Please enter your UPI ID!"); return; }
+      }
+      alert(`Payment successful via ${method}!\nTotal Amount: ₹${totalAmount.textContent}`);
+      cart = [];
+      saveCart();
+      closePaymentModal();
+    }
 
     renderCart();
   </script>
