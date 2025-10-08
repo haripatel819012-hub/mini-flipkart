@@ -5,64 +5,84 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mini Flipkart</title>
 <style>
-/* --- CSS START --- */
-body { margin:0; font-family: Arial,sans-serif; background:#f1f3f6; scroll-behavior:smooth; }
-a{ text-decoration:none;color:inherit; }
-/* Header */
-header{display:flex;justify-content:space-between;align-items:center;background:#2874f0;color:white;padding:10px 20px;position:sticky;top:0;z-index:1000;}
-header .logo{font-size:1.5em;font-weight:bold;}
-header input{width:50%;padding:7px;border-radius:3px;border:none;}
-header .cart{font-size:1.2em;color:white;}
-/* Top Banner */
-.top-banner{background:#ffe500;color:#111;text-align:center;padding:10px;font-weight:bold;}
-/* Featured */
-.featured-section{margin:20px;text-align:center;}
-.featured-section h2{margin-bottom:10px;}
-.featured-slider{display:flex;overflow-x:auto;gap:15px;padding-bottom:10px;}
-.featured-slider::-webkit-scrollbar{display:none;}
-.featured-card{min-width:180px;background:white;border-radius:10px;padding:10px;text-align:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition: transform 0.3s, box-shadow 0.3s;}
-.featured-card:hover{transform:translateY(-7px);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
-.featured-card img{width:100%;border-radius:10px;}
-.featured-card h3{margin:8px 0 5px;}
-.featured-card p{font-weight:bold;}
-/* Category Sections */
-.category-section{padding:20px;}
-.category-section h2{margin-bottom:15px;}
-.category-section.electronics{background:#e1f5fe;}
-.category-section.fashion{background:#fce4ec;}
-.category-section.home{background:#fff3e0;}
-.category-products,.deal-slider{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;}
-.category-banner{background:#ffe500;padding:8px 12px;border-radius:8px;margin-bottom:10px;font-weight:bold;color:#111;text-align:center;}
-.deal-slider{overflow-x:auto;}
-.deal-slider::-webkit-scrollbar{display:none;}
-.deal-card{min-width:160px;background:white;border-radius:10px;padding:8px;flex-shrink:0;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.3s,box-shadow 0.3s;}
-.deal-card:hover{transform:translateY(-5px);box-shadow:0 5px 15px rgba(0,0,0,0.2);}
-.deal-card img{width:100%;border-radius:10px;}
-.deal-card h4{margin:5px 0 3px;font-size:0.9em;}
-.deal-card p{font-size:0.85em;font-weight:bold;}
-/* Product Cards */
-.product-card,.cart-item,.product-detail-card{background:white;border-radius:10px;text-align:center;padding:10px;margin:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.3s,box-shadow 0.3s;}
-.product-card:hover,.cart-item:hover,.product-detail-card:hover{transform:translateY(-7px);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
-.product-card img,.product-detail-card img,.cart-item img{width:100%;border-radius:10px;}
-.product-card h3,.cart-item h3,.product-detail-card h2{margin:10px 0 5px;}
-.product-card p,.cart-item p,.product-detail-card p{font-weight:bold;color:#333;margin:5px 0;}
-/* Buttons */
-.product-card button,.product-detail-card button,#checkout,.view-details{background:#fb641b;color:white;padding:8px 15px;border:none;border-radius:25px;cursor:pointer;margin:5px 0;font-weight:bold;}
-.product-card button:hover,.product-detail-card button:hover,#checkout:hover,.view-details:hover{background:#e55d1c;}
-.view-details{display:inline-block;background:#2874f0;color:white;text-decoration:none;font-size:0.9em;}
-.view-details:hover{background:#1a5fc1;}
-.product-image{position:relative;}
-.offer-badge{position:absolute;top:8px;left:8px;background:#fb641b;color:white;font-size:0.75em;padding:3px 6px;border-radius:5px;font-weight:bold;z-index:10;}
-.cart-list{display:flex;flex-direction:column;gap:10px;margin:20px;}
-.cart-item{display:flex;gap:15px;padding:10px;}
-.cart-info{text-align:left;flex-grow:1;}
-.remove-btn{background:#e53935;color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;}
-.remove-btn:hover{background:#c62828;}
-.cart-total{text-align:right;margin:20px;}
-#back-to-top{position:fixed;bottom:25px;right:25px;background:#2874f0;color:white;border:none;padding:12px 15px;border-radius:50%;cursor:pointer;font-size:1.2em;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:none;z-index:1000;}
-#back-to-top:hover{background:#1a5fc1;}
-footer{text-align:center;background:#2874f0;color:white;padding:12px;margin-top:20px;}
-@media(max-width:768px){header input{width:40%;}.product-list,.cart-list,.featured-slider,.deal-slider,.category-products{flex-direction:column;align-items:center;}.product-card,.cart-item,.product-detail-card,.featured-card,.deal-card{width:90%;}}
+  /* --- Cart Section Style Fix --- */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.cart-item:hover {
+  transform: scale(1.02);
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.cart-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.cart-info h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.cart-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.remove-btn {
+  background: #ff5252;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.remove-btn:hover {
+  background: #e04848;
+}
+
+.cart-summary {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: right;
+}
+
+#checkout {
+  background: #2874f0;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#checkout:hover {
+  background: #0a58ca;
+}
 </style>
 </head>
 <body>
@@ -114,7 +134,7 @@ footer{text-align:center;background:#2874f0;color:white;padding:12px;margin-top:
 
 <footer>&copy; 2025 Mini Flipkart</footer>
 <script>
-/* --- JS FIXED --- */
+/* --- JS WITH SIZE + SINGLE ITEM CART --- */
 const products = [
   {name:"Smartphone",price:12999,category:"electronics",img:"https://dummyimage.com/200x200/2874f0/ffffff&text=Smartphone",offer:"50% OFF"},
   {name:"Headphones",price:1499,category:"electronics",img:"https://dummyimage.com/200x200/2874f0/ffffff&text=Headphones",offer:"Best Seller"},
@@ -140,11 +160,13 @@ function saveCart() {
 function renderCart() {
   cartList.innerHTML = "";
   let total = 0;
+
   if (cart.length === 0) {
     cartList.innerHTML = "<p>Your cart is empty!</p>";
     totalAmount.textContent = "0";
     return;
   }
+
   cart.forEach((product, index) => {
     total += product.price;
     const item = document.createElement("div");
@@ -153,12 +175,14 @@ function renderCart() {
       <img src="${product.img}" alt="${product.name}" width="100">
       <div class="cart-info">
         <h3>${product.name}</h3>
+        ${product.size ? `<p>Size: <strong>${product.size}</strong></p>` : ""}
         <p>₹${product.price}</p>
       </div>
       <button class="remove-btn" data-index="${index}">Remove</button>
     `;
     cartList.appendChild(item);
   });
+
   totalAmount.textContent = total;
 
   document.querySelectorAll(".remove-btn").forEach(btn => {
@@ -170,7 +194,7 @@ function renderCart() {
   });
 }
 
-// --- Add Products to Page ---
+// --- Product List with Size Selection ---
 function populateProducts(sectionId, category) {
   const container = document.getElementById(sectionId);
   products.filter(p => p.category === category).forEach(product => {
@@ -183,24 +207,37 @@ function populateProducts(sectionId, category) {
       </div>
       <h3>${product.name}</h3>
       <p>₹${product.price}</p>
+      <label style="font-size:12px;">Select Size:</label>
+      <select class="size-select">
+        <option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
       <button>Add to Cart</button>
     `;
+
+    const sizeSelect = card.querySelector(".size-select");
     card.querySelector("button").addEventListener("click", () => {
-      cart.push(product);
+      const chosenSize = sizeSelect.value;
+      const productWithSize = {...product, size: chosenSize};
+      cart.push(productWithSize);
       saveCart();
-      alert(`${product.name} added to cart!`);
+      alert(`${product.name} (Size: ${chosenSize}) added to cart!`);
       document.querySelector("#cart-section").scrollIntoView({behavior:"smooth"});
     });
+
     container.appendChild(card);
   });
 }
 
+// --- Populate all categories ---
 populateProducts("electronics-list", "electronics");
 populateProducts("fashion-list", "fashion");
 populateProducts("home-list", "home");
 renderCart();
 
-// --- Checkout Button ---
+// --- Checkout ---
 document.getElementById("checkout").addEventListener("click", () => {
   if (cart.length === 0) {
     alert("Your cart is empty!");
@@ -211,7 +248,7 @@ document.getElementById("checkout").addEventListener("click", () => {
   saveCart();
 });
 
-// --- Back to Top ---
+// --- Back to Top Button ---
 const backToTop = document.getElementById("back-to-top");
 window.addEventListener("scroll", () => {
   backToTop.style.display = window.scrollY > 200 ? "block" : "none";
