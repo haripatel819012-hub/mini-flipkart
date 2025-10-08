@@ -184,12 +184,14 @@ const products = [
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 const cartCount = document.getElementById("cart-count");
+const floatingCount = document.getElementById("floating-count");
 const cartList = document.querySelector(".cart-list");
 const totalAmount = document.getElementById("total-amount");
 
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   cartCount.textContent = cart.length;
+  floatingCount.textContent = cart.length;
   renderCart();
 }
 
@@ -293,7 +295,11 @@ backToTop.addEventListener("click", () => {
   window.scrollTo({top: 0, behavior: "smooth"});
 });
 </script>
-  <!-- Floating Cart Button -->
+  // --- Floating Cart Click ---
+document.getElementById("floating-cart").addEventListener("click", () => {
+  document.querySelector("#cart-section").scrollIntoView({ behavior: "smooth" });
+});
+<!-- Floating Cart Button -->
 <div id="floating-cart">
   🛒 <span id="floating-count">0</span>
 </div>
